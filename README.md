@@ -9,7 +9,8 @@ template parfait pour créer un projet avec une architecture MVC
         -Model
             bd.inc.php  (Connexion a la BDD)
         -Vue
-            VosVueDeVotreSite.php
+            header.php                     // un reset Css y est intégrer ainsi qu'un link vers le style.css
+            footer.php
         -Css
             style.css
         GetRacine.php
