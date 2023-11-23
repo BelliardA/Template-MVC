@@ -2,7 +2,7 @@
 
 function controleurPrincipal($action) {
     $lesActions = array();
-    $lesActions["defaut"] = "accueil.php ";     // enter the name of the default controller
+    // $lesActions["defaut"] = "exemple.php ";     // enter the name of the default controller
 
 
     if (array_key_exists($action, $lesActions)) {
