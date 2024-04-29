@@ -1,0 +1,58 @@
+<?php
+
+include_once "bd.inc.php";
+
+function getUsers() {
+
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("select * from users");
+        $req->execute();
+
+        $ligne = $req->fetch(PDO::FETCH_ASSOC);
+        while ($ligne) {
+            $resultat[] = $ligne;
+            $ligne = $req->fetch(PDO::FETCH_ASSOC);
+        }
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
+}
+
+function getUsersByMail($mail) {
+
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("select * from users where mail=:mail");
+        $req->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $req->execute();
+        
+        $resultat = $req->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
+}
+
+function addUsers($mail, $password, $name, $firstname, $school) {
+    try {
+        $cnx = connexionPDO();
+
+        $passwordCrypt = crypt($password, "sel");
+        $req = $cnx->prepare("insert into users (mail, password,name, first_name, school) values(:mail,:password, :name, :firstname, :school)");
+        $req->bindValue(':mail', $mailU, PDO::PARAM_STR);
+        $req->bindValue(':password', $passwordCrypt, PDO::PARAM_STR);
+        $req->bindValue(':name', $name, PDO::PARAM_STR);
+        $req->bindValue(':firstname', $firstname, PDO::PARAM_STR);
+        $req->bindValue(':school', $school, PDO::PARAM_STR);
+        
+        $resultat = $req->execute();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
+}

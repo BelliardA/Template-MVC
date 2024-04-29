@@ -2,7 +2,9 @@
 
 function controleurPrincipal($action) {
     $lesActions = array();
-    $lesActions["defaut"] = "user.php ";     // enter the name of the default controller
+    $lesActions["defaut"] = "menu.php "; 
+    $lesActions["connexion"] = "connexion.php";
+    $lesActions["register"] = "register.php";
 
 
     if (array_key_exists($action, $lesActions)) {
