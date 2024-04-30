@@ -8,6 +8,7 @@ include_once "$racine/model/authentification.inc.php";
 if (isset($_POST["mail"]) && isset($_POST["password"])){
     $mail=$_POST["mail"];
     $mdp=$_POST["password"];
+    login($mail,$mdp);
 }
 else
 {
@@ -15,11 +16,11 @@ else
     $mdp="";
 }
 
-login($mail,$mdp);
-
 if (isLoggedOn()){
-    include "$racine/controleur/menu.php";
+    $message = "Connexion réussie";
+    include "$racine/vue/vueValidConnexion.php";
 }
 else{
-    $titre = "authentification";
+    $message = "Connexion échouée";
+    include "$racine/vue/vueConnexion.php";
 }

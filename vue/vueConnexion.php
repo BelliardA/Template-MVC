@@ -7,8 +7,13 @@
 
 </form>
 
+<?php
+if(isset($_POST["mail"]) && isset($_POST["password"])){
+    echo "<p>Vous avez saisi : ".$_POST["mail"]." et ".$_POST["password"]."</p>";
+}
+?>
 <h2>Inscription</h2>
-    <form action="./?action=register" method="post">
+    <form action="./?action=register" method="POST">
         <div>
             <label for="mail">Email :</label>
             <input type="email" id="mail" name="mail" required>

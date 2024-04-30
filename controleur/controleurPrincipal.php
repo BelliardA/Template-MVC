@@ -5,6 +5,7 @@ function controleurPrincipal($action) {
     $lesActions["defaut"] = "menu.php "; 
     $lesActions["connexion"] = "connexion.php";
     $lesActions["register"] = "register.php";
+    $lesActions["deconnexion"] = "deconnexion.php";
 
 
     if (array_key_exists($action, $lesActions)) {

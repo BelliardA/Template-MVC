@@ -41,9 +41,9 @@ function addUsers($mail, $password, $name, $firstname, $school) {
     try {
         $cnx = connexionPDO();
 
-        $passwordCrypt = crypt($password, "sel");
+        $passwordCrypt = password_hash($password, PASSWORD_DEFAULT);
         $req = $cnx->prepare("insert into users (mail, password,name, first_name, school) values(:mail,:password, :name, :firstname, :school)");
-        $req->bindValue(':mail', $mailU, PDO::PARAM_STR);
+        $req->bindValue(':mail', $mail, PDO::PARAM_STR);
         $req->bindValue(':password', $passwordCrypt, PDO::PARAM_STR);
         $req->bindValue(':name', $name, PDO::PARAM_STR);
         $req->bindValue(':firstname', $firstname, PDO::PARAM_STR);
