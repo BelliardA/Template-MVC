@@ -7,6 +7,7 @@ function controleurPrincipal($action) {
     $lesActions["register"] = "register.php";
     $lesActions["deconnexion"] = "deconnexion.php";
     $lesActions["addGroup"] = "addGroup.php";
+    $lesActions["detailGroup"] = "detailGroup.php";
 
 
     if (array_key_exists($action, $lesActions)) {

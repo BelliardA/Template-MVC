@@ -6,19 +6,24 @@
         </div>
         <div>
             <label for="isPublic">Groupe Public * :</label>
-            <input type="checkbox" id="isPublic" name="isPublic" required>
+            <input type="checkbox" id="isPublic" name="isPublic">
         </div>
         <div>
             <label for="description">description :</label>
-            <input type="text" id="description" name="description" required>
+            <input type="text" id="description" name="description">
         </div>
         <div>
             <label for="id_activity">Activité :</label>
             <select class="form-control" id="id_activity" name="id_activity">
-                <?php foreach ($activities as $activity): ?>
-                    <option value="<?php echo $activity['id']; ?>">
-                        <?php echo $activity['name']; ?>
-                    </option>
+                <?php foreach ($activities as $activity): 
+                    if(verifActivityDipo($activity["id"])){
+                        ?>
+                        <option value="<?php echo $activity['id']; ?>">
+                            <?php echo $activity['name']; ?>
+                        </option>
+                    <?php
+                    }
+                    ?>
                 <?php endforeach; ?>
             </select>
         </div>
