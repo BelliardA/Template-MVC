@@ -5,7 +5,7 @@ include "bd.inc.php";
 function getGroups() {
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from groups");
+        $req = $cnx->prepare("select * from groupes");
         $req->execute();
 
         $ligne = $req->fetch(PDO::FETCH_ASSOC);
@@ -20,11 +20,30 @@ function getGroups() {
     return $resultat;
 }
 
+function getGroupPublic(){
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("select * from groupes where is_public=1");
+        $req->execute();
+
+        $ligne = $req->fetch(PDO::FETCH_ASSOC);
+        while ($ligne) {
+            $resultat[] = $ligne;
+            $ligne = $req->fetch(PDO::FETCH_ASSOC);
+        }
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
+
+}
+
 function getGroupsById($id) {
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from groups where id=:id");
-        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req = $cnx->prepare("select * from groupes where id=:id");
+        $req->bindValue(':id', $id, PDO::PARAM_STR);
         $req->execute();
         
         $resultat = $req->fetch(PDO::FETCH_ASSOC);

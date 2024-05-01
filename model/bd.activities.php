@@ -70,3 +70,18 @@ function getActivitiesById($id) {
     }
     return $resultat;
 }
+
+function getTimeByGroup($id_group){
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("SELECT start_time FROM horraire_activities WHERE id_group = :id_group");
+        $req->bindValue(':id_group', $id_group, PDO::PARAM_STR);
+        $req->execute();
+        
+        $resultat = $req->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
+}
