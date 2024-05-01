@@ -3,7 +3,7 @@ if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
     $racine="..";
 }
 
-include_once "$racine/model/authentification.inc.php";
+include_once "$racine/model/bd.authentification.inc.php";
 
 if (isset($_POST["mail"]) && isset($_POST["password"] )&& isset($_POST["name"]) && isset($_POST["firstname"]) && isset($_POST["school"])){
     $mail=$_POST["mail"];
